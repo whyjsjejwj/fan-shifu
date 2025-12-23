@@ -1,0 +1,84 @@
+{
+    "hero": {
+        "title": "正宗家乡味",
+        "subtitle": "手工面条，鲜香肉夹馍，现蒸面皮。<br />来自中国的美味，在新加坡用心制作。",
+        "cta": "立即下单"
+    },
+    "story": {
+        "title": "品牌故事",
+        "subtitle": "樊师傅",
+        "p1": "樊师傅将正宗的陕西味道带到了新加坡，主打西北风味名吃——面皮。我们倾注心血，用爱与坚持精心制作每一道美食。",
+        "p2": "我们的面皮坚持每日现蒸，口感劲道爽滑。搭配秘制油泼辣子和醇香醋汁，酸辣鲜香，完美诠释地道老陕风味。",
+        "p3": "对于身在异乡的陕西人，这是一份慰藉乡愁的家乡味；对于其他食客，我们诚邀您体验这份源自西北的饮食文化，正如款待家中贵客般用心。",
+        "badge": "始于 2012"
+    },
+    "featured": {
+        "title": "顾客最爱",
+        "subtitle": "回头客们最常点的招牌美味。",
+        "badge": "热销",
+        "view_menu": "查看菜单"
+    },
+    "menu": {
+        "title": "我们的菜单",
+        "ordering_note": "订购须知",
+        "description": "描述",
+        "add_to_cart": "加入购物车"
+    },
+    "checkout": {
+        "title": "结账",
+        "empty_cart": "购物车为空",
+        "browse_menu": "浏览菜单",
+        "order_summary": "订单摘要",
+        "checkout_details": "结账详情",
+        "mrt_pickup": "地铁站自取",
+        "no_minimum": "无最低消费",
+        "home_delivery": "送货上门",
+        "free_delivery": "免费送货",
+        "min_spend": "最低消费",
+        "pickup_date": "取货日期",
+        "delivery_date": "送货日期",
+        "required": "必填",
+        "collection_time": "预计取货时间",
+        "time_note": "* 如需更改时间，请通过 WhatsApp 联系我们。",
+        "advance_note": "* 请至少提前 {{days}} 天预订。",
+        "name_placeholder": "您的姓名 (必填)",
+        "phone_placeholder": "电话号码 (必填)",
+        "mrt_placeholder": "首选地铁站",
+        "coordinate_note": "我们将通过 WhatsApp 协调具体会面地点。",
+        "address_placeholder": "完整送货地址",
+        "order_whatsapp": "通过 WhatsApp 下单",
+        "total": "总计",
+        "order_received": "收到订单！",
+        "verify_payment": "请核实付款以完成订单。",
+        "paynow_label": "PayNow / PayLah",
+        "transfer_note": "* 请转账至此号码",
+        "screenshot_note": "请<b>截图</b>您的付款凭证，稍后需要在 WhatsApp 中发送。",
+        "open_whatsapp": "已付款，打开 WhatsApp",
+        "go_back": "返回"
+    },
+    "navbar": {
+        "home": "首页",
+        "menu": "菜单",
+        "cart": "购物车"
+    },
+    "footer": {
+        "tagline": "地道手工美味。",
+        "quick_links": "快速链接",
+        "contact": "联系我们",
+        "rights": "樊师傅. 保留所有权利."
+    },
+    "cart": {
+        "title": "您的购物车",
+        "empty": "购物车为空",
+        "continue_shopping": "继续购物",
+        "subtotal": "小计",
+        "checkout_now": "立即结账"
+    },
+    "categories": {
+        "All": "全部",
+        "Noodles": "面类",
+        "Meat": "肉类",
+        "Bread": "饼类",
+        "Others": "其他"
+    }
+}

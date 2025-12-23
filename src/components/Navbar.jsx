@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Menu as MenuIcon, X } from 'lucide-react';
 import { Button } from './ui/Button';
@@ -6,15 +7,18 @@ import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { CartDrawer } from './CartDrawer';
+import { LanguageToggle } from './LanguageToggle';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { totalItems } = useCart();
 
+    const { t } = useTranslation();
+
     const navLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Menu', href: '/menu' },
+        { name: t('navbar.home'), href: '/' },
+        { name: t('navbar.menu'), href: '/menu' },
     ];
 
     return (
@@ -38,6 +42,7 @@ export function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
+                        <LanguageToggle />
                         <Button
                             variant="primary"
                             size="sm"
@@ -45,7 +50,7 @@ export function Navbar() {
                             onClick={() => setIsCartOpen(true)}
                         >
                             <ShoppingBag size={18} />
-                            <span>Cart ({totalItems})</span>
+                            <span>{t('navbar.cart')} ({totalItems})</span>
                         </Button>
                     </div>
 
@@ -78,6 +83,9 @@ export function Navbar() {
                                         {link.name}
                                     </Link>
                                 ))}
+                                <div className="flex justify-start">
+                                    <LanguageToggle />
+                                </div>
                                 <Button
                                     className="w-full justify-center space-x-2"
                                     onClick={() => {
@@ -86,7 +94,7 @@ export function Navbar() {
                                     }}
                                 >
                                     <ShoppingBag size={18} />
-                                    <span>Cart ({totalItems})</span>
+                                    <span>{t('navbar.cart')} ({totalItems})</span>
                                 </Button>
                             </div>
                         </motion.div>

@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { products, categories } from '../data/products';
 import { Button } from '../components/ui/Button';
 import { useCart } from '../context/CartContext';
@@ -29,9 +30,11 @@ export default function Menu() {
         setSelectedProduct(null);
     }, []);
 
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="container mx-auto px-4 py-12">
-            <h1 className="text-4xl font-serif font-bold text-center mb-8 text-brand-red">Our Menu</h1>
+            <h1 className="text-4xl font-serif font-bold text-center mb-8 text-brand-red">{t('menu.title')}</h1>
 
             {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -44,7 +47,7 @@ export default function Menu() {
                             : 'bg-white text-brand-brown hover:bg-brand-orange/10'
                             }`}
                     >
-                        {cat}
+                        {t(`categories.${cat}`)}
                     </button>
                 ))}
             </div>
@@ -64,7 +67,7 @@ export default function Menu() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={handleCloseModal}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-default"
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 cursor-default"
                         style={{ willChange: 'opacity' }}
                     >
                         <motion.div
@@ -102,16 +105,16 @@ export default function Menu() {
 
                                     {selectedProduct.orderingCriteria && (
                                         <div className="mb-6 p-4 bg-brand-orange/5 border border-brand-orange/20 rounded-lg">
-                                            <h4 className="font-bold text-brand-orange text-sm mb-1 uppercase tracking-wider">Ordering Note</h4>
+                                            <h4 className="font-bold text-brand-orange text-sm mb-1 uppercase tracking-wider">{t('menu.ordering_note')}</h4>
                                             <p className="text-brand-brown/80 text-sm">
-                                                {selectedProduct.orderingCriteria}
+                                                {i18n.language === 'zh' && selectedProduct.orderingCriteria_zh ? selectedProduct.orderingCriteria_zh : selectedProduct.orderingCriteria}
                                             </p>
                                         </div>
                                     )}
 
                                     <div className="prose prose-sm text-brand-brown/70 mb-8">
-                                        <h4 className="font-bold text-brand-brown mb-2">Description</h4>
-                                        <p>{selectedProduct.description}</p>
+                                        <h4 className="font-bold text-brand-brown mb-2">{t('menu.description')}</h4>
+                                        <p>{i18n.language === 'zh' && selectedProduct.description_zh ? selectedProduct.description_zh : selectedProduct.description}</p>
                                     </div>
                                 </div>
 
@@ -123,7 +126,7 @@ export default function Menu() {
                                         }}
                                         className="w-full py-4 text-lg"
                                     >
-                                        Add to Cart - ${selectedProduct.price.toFixed(2)}
+                                        {t('menu.add_to_cart')} - ${selectedProduct.price.toFixed(2)}
                                     </Button>
                                 </div>
                             </div>

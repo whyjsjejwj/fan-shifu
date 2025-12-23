@@ -2,8 +2,10 @@ import React, { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Button } from './ui/Button';
+import { useTranslation } from 'react-i18next';
 
 const ProductGrid = memo(({ products, onProductClick, onAddToCart }) => {
+    const { i18n } = useTranslation();
     return (
         <motion.div
             layout
@@ -43,11 +45,13 @@ const ProductGrid = memo(({ products, onProductClick, onAddToCart }) => {
 
                             {product.orderingCriteria && (
                                 <p className="text-xs font-bold text-brand-orange mb-2 bg-brand-orange/10 p-1 px-2 rounded-md inline-block self-start">
-                                    {product.orderingCriteria}
+                                    {i18n.language === 'zh' && product.orderingCriteria_zh ? product.orderingCriteria_zh : product.orderingCriteria}
                                 </p>
                             )}
 
-                            <p className="text-sm text-brand-brown/60 mb-4 flex-1 line-clamp-3">{product.description}</p>
+                            <p className="text-sm text-brand-brown/60 mb-4 flex-1 line-clamp-3">
+                                {i18n.language === 'zh' && product.description_zh ? product.description_zh : product.description}
+                            </p>
                             <Button
                                 onClick={() => onAddToCart(product)}
                                 variant="secondary"

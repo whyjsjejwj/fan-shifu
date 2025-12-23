@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
 import { storeConfig } from '../storeConfig';
 import { Button } from '../components/ui/Button';
@@ -7,6 +8,7 @@ import { AlertCircle, Calendar, MessageCircle, CreditCard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Checkout() {
+    const { t } = useTranslation();
     const { cart, totalPrice, totalItems, validateCart } = useCart();
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedTime, setSelectedTime] = useState("");
@@ -127,8 +129,8 @@ export default function Checkout() {
     if (cart.length === 0) {
         return (
             <div className="container mx-auto px-4 py-20 text-center">
-                <h2 className="text-3xl font-serif font-bold mb-4">Your cart is empty</h2>
-                <Link to="/menu"><Button>Browse Menu</Button></Link>
+                <h2 className="text-3xl font-serif font-bold mb-4">{t('checkout.empty_cart')}</h2>
+                <Link to="/menu"><Button>{t('checkout.browse_menu')}</Button></Link>
             </div>
         );
     }
@@ -137,7 +139,7 @@ export default function Checkout() {
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-12">
             {/* Order Summary */}
             <div>
-                <h2 className="text-2xl font-serif font-bold mb-6">Order Summary</h2>
+                <h2 className="text-2xl font-serif font-bold mb-6">{t('checkout.order_summary')}</h2>
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-brand-orange/10 space-y-4">
                     {cart.map((item) => (
                         <div key={item.id} className="flex justify-between items-center border-b border-gray-100 pb-2">
@@ -148,7 +150,7 @@ export default function Checkout() {
                         </div>
                     ))}
                     <div className="flex justify-between items-center pt-4 text-xl font-bold text-brand-red">
-                        <span>Total</span>
+                        <span>{t('checkout.total')}</span>
                         <span>${totalPrice.toFixed(2)}</span>
                     </div>
                 </div>
@@ -156,7 +158,7 @@ export default function Checkout() {
 
             {/* Checkout Form */}
             <div className="space-y-6">
-                <h2 className="text-2xl font-serif font-bold mb-6">Checkout Details</h2>
+                <h2 className="text-2xl font-serif font-bold mb-6">{t('checkout.checkout_details')}</h2>
 
                 {/* Delivery Method Selection */}
                 <div className="grid grid-cols-2 gap-4">
@@ -167,8 +169,8 @@ export default function Checkout() {
                             }`}
                         onClick={() => setDeliveryMethod('pickup')}
                     >
-                        <span className="font-bold">MRT Pickup</span>
-                        <span className="text-xs">No minimum</span>
+                        <span className="font-bold">{t('checkout.mrt_pickup')}</span>
+                        <span className="text-xs">{t('checkout.no_minimum')}</span>
                     </button>
 
                     <button
@@ -181,11 +183,11 @@ export default function Checkout() {
                         }}
                         disabled={totalPrice < storeConfig.deliveryThreshold}
                     >
-                        <span className="font-bold">Home Delivery</span>
+                        <span className="font-bold">{t('checkout.home_delivery')}</span>
                         <span className="text-xs">
                             {totalPrice < storeConfig.deliveryThreshold
-                                ? `Min. spend $${storeConfig.deliveryThreshold}`
-                                : 'Free Delivery'}
+                                ? `${t('checkout.min_spend')} $${storeConfig.deliveryThreshold}`
+                                : t('checkout.free_delivery')}
                         </span>
                     </button>
                 </div>
@@ -193,7 +195,7 @@ export default function Checkout() {
                 {/* Date Picker */}
                 <div className="space-y-2">
                     <label className="block text-sm font-bold">
-                        {deliveryMethod === 'pickup' ? 'Pickup Date' : 'Delivery Date'} (Required)
+                        {deliveryMethod === 'pickup' ? t('checkout.pickup_date') : t('checkout.delivery_date')} ({t('checkout.required')})
                     </label>
                     <div className="relative">
                         <Calendar className="absolute left-3 top-3 text-brand-brown/50" size={18} />
@@ -211,7 +213,7 @@ export default function Checkout() {
                     {deliveryMethod === 'pickup' && (
                         <div className="mt-2 space-y-1">
                             <label className="block text-xs font-bold text-gray-600">
-                                Estimated Collection Time
+                                {t('checkout.collection_time')}
                             </label>
                             <input
                                 type="time"
@@ -220,13 +222,13 @@ export default function Checkout() {
                                 className={`w-full px-4 py-2 rounded-md border outline-none focus:ring-2 focus:ring-brand-orange ${errors.time ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <p className="text-xs text-brand-orange">
-                                * Please contact us via WhatsApp if you need to change this time.
+                                {t('checkout.time_note')}
                             </p>
                         </div>
                     )}
 
                     <p className="text-xs text-gray-500 mt-2">
-                        * Please order at least {leadTimeDays} day(s) in advance.
+                        {t('checkout.advance_note', { days: leadTimeDays })}
                     </p>
 
                     {(dateError || errors.date) && (
@@ -242,7 +244,7 @@ export default function Checkout() {
                     <div className="space-y-1">
                         <input
                             type="text"
-                            placeholder="Your Name (Required)"
+                            placeholder={t('checkout.name_placeholder')}
                             className={`w-full px-4 py-2 rounded-md border outline-none focus:ring-2 focus:ring-brand-orange ${errors.name ? 'border-red-500' : 'border-gray-300'
                                 }`}
                             value={customerRef.name}
@@ -254,7 +256,7 @@ export default function Checkout() {
                     <div className="space-y-1">
                         <input
                             type="tel"
-                            placeholder="Phone Number (Required)"
+                            placeholder={t('checkout.phone_placeholder')}
                             className={`w-full px-4 py-2 rounded-md border outline-none focus:ring-2 focus:ring-brand-orange ${errors.phone ? 'border-red-500' : 'border-gray-300'
                                 }`}
                             value={customerRef.phone}
@@ -268,19 +270,19 @@ export default function Checkout() {
                         <div className="space-y-1">
                             <input
                                 type="text"
-                                placeholder="Preferred MRT Station for Pickup"
+                                placeholder={t('checkout.mrt_placeholder')}
                                 className={`w-full px-4 py-2 rounded-md border outline-none focus:ring-2 focus:ring-brand-orange ${errors.mrt ? 'border-red-500' : 'border-gray-300'
                                     }`}
                                 value={mrtStation}
                                 onChange={(e) => setMrtStation(e.target.value)}
                             />
                             {errors.mrt && <span className="text-red-500 text-sm">{errors.mrt}</span>}
-                            <p className="text-xs text-gray-500">We will coordinate the exact meeting point via WhatsApp.</p>
+                            <p className="text-xs text-gray-500">{t('checkout.coordinate_note')}</p>
                         </div>
                     ) : (
                         <div className="space-y-1">
                             <textarea
-                                placeholder="Full Delivery Address"
+                                placeholder={t('checkout.address_placeholder')}
                                 rows={3}
                                 className={`w-full px-4 py-2 rounded-md border outline-none focus:ring-2 focus:ring-brand-orange ${errors.address ? 'border-red-500' : 'border-gray-300'
                                     }`}
@@ -299,7 +301,7 @@ export default function Checkout() {
                         className="w-full bg-green-600 hover:bg-green-700 space-x-2"
                     >
                         <MessageCircle size={20} />
-                        <span>Order via WhatsApp</span>
+                        <span>{t('checkout.order_whatsapp')}</span>
                     </Button>
 
                 </div>
@@ -314,32 +316,32 @@ export default function Checkout() {
                                 <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
                                     <MessageCircle size={24} />
                                 </div>
-                                <h3 className="text-2xl font-serif font-bold text-gray-900">Order Received!</h3>
+                                <h3 className="text-2xl font-serif font-bold text-gray-900">{t('checkout.order_received')}</h3>
                                 <p className="text-gray-500">
-                                    Please verify your payment to complete the order.
+                                    {t('checkout.verify_payment')}
                                 </p>
                             </div>
 
                             <div className="bg-brand-cream/50 p-4 rounded-xl border border-brand-orange/20 space-y-3">
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-600">Total Amount:</span>
+                                    <span className="text-gray-600">{t('checkout.total')}</span>
                                     <span className="text-xl font-bold text-brand-red">${totalPrice.toFixed(2)}</span>
                                 </div>
                                 <div className="border-t border-brand-orange/10 my-2"></div>
                                 <div className="space-y-1">
-                                    <div className="text-sm font-medium text-gray-900">PayNow / PayLah</div>
+                                    <div className="text-sm font-medium text-gray-900">{t('checkout.paynow_label')}</div>
                                     <div className="text-2xl font-mono font-bold text-brand-brown tracking-wider">
                                         {storeConfig.paymentInfo.payNowNumber}
                                     </div>
                                     <div className="text-xs text-brand-orange">
-                                        * Please transfer to this number
+                                        {t('checkout.transfer_note')}
                                     </div>
                                 </div>
                             </div>
 
                             <div className="bg-blue-50 p-3 rounded-lg flex gap-3 text-sm text-blue-700">
                                 <AlertCircle size={20} className="shrink-0" />
-                                <p>Please take a <b>screenshot</b> of your payment. You will need to attach it in WhatsApp.</p>
+                                <p dangerouslySetInnerHTML={{ __html: t('checkout.screenshot_note') }} />
                             </div>
 
                             <div className="space-y-3 pt-2">
@@ -347,13 +349,13 @@ export default function Checkout() {
                                     onClick={confirmOrder}
                                     className="w-full bg-green-600 hover:bg-green-700 h-12 text-lg"
                                 >
-                                    I have paid, Open WhatsApp
+                                    {t('checkout.open_whatsapp')}
                                 </Button>
                                 <button
                                     onClick={() => setShowPaymentModal(false)}
                                     className="w-full text-gray-500 hover:text-gray-800 text-sm font-medium"
                                 >
-                                    Go back
+                                    {t('checkout.go_back')}
                                 </button>
                             </div>
                         </div>

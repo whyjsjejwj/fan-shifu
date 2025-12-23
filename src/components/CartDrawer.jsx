@@ -4,9 +4,11 @@ import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Button } from './ui/Button';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export function CartDrawer({ isOpen, onClose }) {
     const { cart, removeFromCart, updateQuantity, totalPrice } = useCart();
+    const { t } = useTranslation();
 
     return (
         <AnimatePresence>
@@ -33,7 +35,7 @@ export function CartDrawer({ isOpen, onClose }) {
                         <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-brand-cream/30">
                             <div className="flex items-center gap-2">
                                 <ShoppingBag className="text-brand-red" />
-                                <h2 className="text-xl font-serif font-bold text-brand-brown">Your Cart</h2>
+                                <h2 className="text-xl font-serif font-bold text-brand-brown">{t('cart.title')}</h2>
                             </div>
                             <button
                                 onClick={onClose}
@@ -48,9 +50,9 @@ export function CartDrawer({ isOpen, onClose }) {
                             {cart.length === 0 ? (
                                 <div className="h-full flex flex-col items-center justify-center text-brand-brown/50 space-y-4">
                                     <ShoppingBag size={48} className="opacity-20" />
-                                    <p className="text-lg">Your cart is empty</p>
+                                    <p className="text-lg">{t('cart.empty')}</p>
                                     <Button onClick={onClose} variant="outline">
-                                        Continue Shopping
+                                        {t('cart.continue_shopping')}
                                     </Button>
                                 </div>
                             ) : (
@@ -109,13 +111,13 @@ export function CartDrawer({ isOpen, onClose }) {
                         {cart.length > 0 && (
                             <div className="p-4 border-t border-gray-100 bg-gray-50">
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-gray-600">Subtotal</span>
+                                    <span className="text-gray-600">{t('cart.subtotal')}</span>
                                     <span className="text-2xl font-bold text-brand-red">${totalPrice.toFixed(2)}</span>
                                 </div>
                                 <div className="space-y-3">
                                     <Link to="/checkout" onClick={onClose}>
                                         <Button className="w-full py-6 text-lg shadow-lg shadow-brand-orange/20">
-                                            Checkout Now
+                                            {t('cart.checkout_now')}
                                         </Button>
                                     </Link>
                                 </div>

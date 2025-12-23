@@ -1,0 +1,84 @@
+{
+    "hero": {
+        "title": "Authentic Taste of Home",
+        "subtitle": "Handmade noodles, savory meats, and fresh breads. <br />Delicacies from China, made with love in Singapore.",
+        "cta": "Order Now"
+    },
+    "story": {
+        "title": "Our Story",
+        "subtitle": "樊师傅",
+        "p1": "Fan Shifu brings the authentic taste of Shaanxi to Singapore, specializing in Mianpi—a beloved local delicacy from northwestern China. We pour our heart and soul into every dish, crafting it with love and tireless effort.",
+        "p2": "Our Mianpi is made fresh daily, steaming the batter to achieve that perfect, chewy texture that dances on your palate. Paired with our secret house-made chili oil and aromatic vinegar, every bite is a harmonious blend of sour, spicy, and savory notes that define Shaanxi cuisine.",
+        "p3": "For Shaanxi locals living in Singapore, we offer a comforting taste of home. For others, we invite you to experience the rich culinary heritage of the region, prepared with the same dedication as if you were a guest in our own home.",
+        "badge": "Since 2012"
+    },
+    "featured": {
+        "title": "Customer Favorites",
+        "subtitle": "The dishes our regulars keep coming back for.",
+        "badge": "Best Seller",
+        "view_menu": "View Menu"
+    },
+    "menu": {
+        "title": "Our Menu",
+        "ordering_note": "Ordering Note",
+        "description": "Description",
+        "add_to_cart": "Add to Cart"
+    },
+    "checkout": {
+        "title": "Checkout",
+        "empty_cart": "Your cart is empty",
+        "browse_menu": "Browse Menu",
+        "order_summary": "Order Summary",
+        "checkout_details": "Checkout Details",
+        "mrt_pickup": "MRT Pickup",
+        "no_minimum": "No minimum",
+        "home_delivery": "Home Delivery",
+        "free_delivery": "Free Delivery",
+        "min_spend": "Min. spend",
+        "pickup_date": "Pickup Date",
+        "delivery_date": "Delivery Date",
+        "required": "Required",
+        "collection_time": "Estimated Collection Time",
+        "time_note": "* Please contact us via WhatsApp if you need to change this time.",
+        "advance_note": "* Please order at least {{days}} day(s) in advance.",
+        "name_placeholder": "Your Name (Required)",
+        "phone_placeholder": "Phone Number (Required)",
+        "mrt_placeholder": "Preferred MRT Station for Pickup",
+        "coordinate_note": "We will coordinate the exact meeting point via WhatsApp.",
+        "address_placeholder": "Full Delivery Address",
+        "order_whatsapp": "Order via WhatsApp",
+        "total": "Total",
+        "order_received": "Order Received!",
+        "verify_payment": "Please verify your payment to complete the order.",
+        "paynow_label": "PayNow / PayLah",
+        "transfer_note": "* Please transfer to this number",
+        "screenshot_note": "Please take a <b>screenshot</b> of your payment. You will need to attach it in WhatsApp.",
+        "open_whatsapp": "I have paid, Open WhatsApp",
+        "go_back": "Go back"
+    },
+    "navbar": {
+        "home": "Home",
+        "menu": "Menu",
+        "cart": "Cart"
+    },
+    "footer": {
+        "tagline": "Authentic homemade delicacies.",
+        "quick_links": "Quick Links",
+        "contact": "Contact",
+        "rights": "Fan Shifu. All rights reserved."
+    },
+    "cart": {
+        "title": "Your Cart",
+        "empty": "Your cart is empty",
+        "continue_shopping": "Continue Shopping",
+        "subtotal": "Subtotal",
+        "checkout_now": "Checkout Now"
+    },
+    "categories": {
+        "All": "All",
+        "Noodles": "Noodles",
+        "Meat": "Meat",
+        "Bread": "Bread",
+        "Others": "Others"
+    }
+}

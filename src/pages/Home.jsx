@@ -4,8 +4,10 @@ import { products } from '../data/products';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
+    const { t, i18n } = useTranslation();
     const featuredProducts = products.filter(p => p.popular);
 
     return (
@@ -22,16 +24,15 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-5xl md:text-7xl font-serif font-bold"
                     >
-                        Authentic Taste of Home
+                        {t('hero.title')}
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto"
-                    >
-                        Handmade noodles, savory meats, and fresh breads. <br />Delicacies from China, made with love in Singapore.
-                    </motion.p>
+                        dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
+                    />
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -39,7 +40,7 @@ export default function Home() {
                     >
                         <Link to="/menu">
                             <Button size="lg" variant="primary">
-                                Order Now <ArrowRight className="ml-2 w-5 h-5" />
+                                {t('hero.cta')} <ArrowRight className="ml-2 w-5 h-5" />
                             </Button>
                         </Link>
                     </motion.div>
@@ -59,21 +60,15 @@ export default function Home() {
                             className="md:w-1/2 space-y-8"
                         >
                             <div className="relative">
-                                <h2 className="text-5xl md:text-6xl font-serif font-bold text-brand-red mb-2">Our Story</h2>
-                                <h3 className="text-3xl font-serif text-brand-brown opacity-80 mb-6">樊师傅</h3>
+                                <h2 className="text-5xl md:text-6xl font-serif font-bold text-brand-red mb-2">{t('story.title')}</h2>
+                                <h3 className="text-3xl font-serif text-brand-brown opacity-80 mb-6">{t('story.subtitle')}</h3>
                                 <div className="absolute -left-6 top-0 w-1 h-full bg-brand-orange opacity-20 hidden md:block"></div>
                             </div>
 
                             <div className="space-y-6 text-lg leading-relaxed text-brand-brown/80 font-serif">
-                                <p>
-                                    Fan Shifu brings the authentic taste of Shaanxi to Singapore, specializing in Mianpi—a beloved local delicacy from northwestern China. We pour our heart and soul into every dish, crafting it with love and tireless effort.
-                                </p>
-                                <p>
-                                    Our Mianpi is made fresh daily, steaming the batter to achieve that perfect, chewy texture that dances on your palate. Paired with our secret house-made chili oil and aromatic vinegar, every bite is a harmonious blend of sour, spicy, and savory notes that define Shaanxi cuisine.
-                                </p>
-                                <p className="font-medium text-brand-brown">
-                                    For Shaanxi locals living in Singapore, we offer a comforting taste of home. For others, we invite you to experience the rich culinary heritage of the region, prepared with the same dedication as if you were a guest in our own home.
-                                </p>
+                                <p>{t('story.p1')}</p>
+                                <p>{t('story.p2')}</p>
+                                <p className="font-medium text-brand-brown">{t('story.p3')}</p>
                             </div>
                         </motion.div>
 
@@ -94,7 +89,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-brand-orange text-white rounded-full flex items-center justify-center font-serif font-bold p-4 text-center shadow-lg z-20 hidden md:flex">
-                                Since 2012
+                                {t('story.badge')}
                             </div>
                         </motion.div>
                     </div>
@@ -104,8 +99,8 @@ export default function Home() {
             {/* Featured Items */}
             <section className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-serif font-bold text-brand-brown mb-4">Customer Favorites</h2>
-                    <p className="text-brand-brown/60">The dishes our regulars keep coming back for.</p>
+                    <h2 className="text-4xl font-serif font-bold text-brand-brown mb-4">{t('featured.title')}</h2>
+                    <p className="text-brand-brown/60">{t('featured.subtitle')}</p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -125,16 +120,18 @@ export default function Home() {
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute top-4 right-4 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                                    Best Seller
+                                    {t('featured.badge')}
                                 </div>
                             </div>
                             <div className="p-6">
                                 <h3 className="text-xl font-bold mb-2 font-serif">{product.name}</h3>
-                                <p className="text-sm text-brand-brown/60 mb-4 line-clamp-2">{product.description}</p>
+                                <p className="text-sm text-brand-brown/60 mb-4 line-clamp-2">
+                                    {i18n.language === 'zh' && product.description_zh ? product.description_zh : product.description}
+                                </p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-lg font-bold text-brand-red">${product.price.toFixed(2)}</span>
                                     <Link to="/menu">
-                                        <Button variant="ghost" size="sm">View Menu</Button>
+                                        <Button variant="ghost" size="sm">{t('featured.view_menu')}</Button>
                                     </Link>
                                 </div>
                             </div>
