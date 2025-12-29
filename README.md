@@ -13,7 +13,6 @@
 - [Use of Artificial Intelligence (AI)](#use-of-artificial-intelligence-ai)
 - [Future Improvements](#future-improvements)
 - [Installation and Setup (For Development)](#installation-and-setup-for-development)
-- [License](#license)
 
 ---
 
